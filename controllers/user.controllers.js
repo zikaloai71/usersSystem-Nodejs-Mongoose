@@ -33,6 +33,7 @@ class User {
       });
     }
   };
+  
   static single = async (req, res) => {
     try {
       const user = await userDb.findById(req.params.id);
@@ -78,13 +79,18 @@ class User {
   };
 
   static editPost = async (req, res) => {
+    const user = await userDb.findById(req.params.id);
     try {
       await userDb.findByIdAndUpdate(req.params.id, req.body, {
         runValidators: true,
       });
       res.redirect(`/single/${req.params.id}`);
     } catch (e) {
-      res.send(e.message);
+      res.render("edit", {
+        pageTitle: "edit page",
+        user,
+        errorMessage:e,
+      });
     }
   };
 
