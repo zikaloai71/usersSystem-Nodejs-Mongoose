@@ -2,14 +2,23 @@
 {{>nav}}
 <form action="/getAddLogic" class="container my-3">
   <div class="form-group">
-    <input class="my-1 form-control" name='email' placeholder="Enter email">
+    <input class="my-1 form-control" name='email' value="{{user.email}}" placeholder="Enter email">
   </div>
+   {{#if errorMessage.errors.email}}
+  <div class="container alert alert-danger">{{errorMessage}}</div>
+  {{/if}}
    <div class="form-group">
-    <input  class="my-1 form-control" name='name' placeholder="Enter name">
+    <input  class="my-1 form-control" name='name' value="{{user.name}}" placeholder="Enter name">
   </div>
+   {{#if errorMessage.errors.name}}
+  <div class="container alert alert-danger">{{errorMessage}}</div>
+  {{/if}}
    <div class="form-group">
-    <input  class="my-1 form-control" name='age'   placeholder="Enter age">
+    <input  class="my-1 form-control" name='age' value="{{user.age}}"  placeholder="Enter age">
   </div>
+   {{#if errorMessage.errors.age}}
+  <div class="container alert alert-danger">{{errorMessage}}</div>
+  {{/if}}
   
   <div class="form-check form-switch">
   <input name="activeStatus" class="my-1 form-check-input" type="checkbox" role="switch"  id="flexSwitchCheckDefault" >

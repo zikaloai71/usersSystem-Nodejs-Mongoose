@@ -20,12 +20,17 @@ class User {
   };
 
   static getAddLogic = async (req, res) => {
+    let user = new userDb(req.query);
     try {
-      let user = new userDb(req.query);
       await user.save();
       res.redirect("/");
+
     } catch (e) {
-      res.send(e);
+      res.render("add", {
+        pageTitle: "add page",
+        user,
+        errorMessage:e,
+      });
     }
   };
   static single = async (req, res) => {
