@@ -28,6 +28,38 @@ class User {
       res.send(e);
     }
   };
+  static single = async (req, res) => {
+    try {
+      const user = await userDb.findById(req.params.id);
+      res.render("single", {
+        pageTitle: "single user",
+        user,
+      });
+    } catch (e) {
+      res.send(e.message);
+    }
+  };
+
+  static delete = async (req, res) => {
+    try {
+      await userDb.findByIdAndDelete(req.params.id);
+      res.redirect("/");
+    } catch (e) {
+      res.send(e.message);
+    }
+  };
+
+  static toggle = async (req, res) => {
+    try {
+      const user = await userDb.findById(req.params.id);
+      user.activeStatus = user.activeStatus ? "" : "on";
+      await user.save();
+      res.redirect("/");
+    } catch (e) {
+      res.send(e.message);
+    }
+  };
+
 
 
 }
