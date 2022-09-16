@@ -12,6 +12,20 @@ router.get("/delete/:id", User.delete);
 
 router.get("/activity/:id", User.toggle);
 
+router.get("/edit/:id", User.edit);
+
+router.post("/edit/:id", User.editPost);
+
+router.get("/addAddress/:id", User.addAddress);
+
+router.post("/addAddress/:id", User.addAddressPost);
+
+router.get("/deleteAddress/:delId", User.deleteAddress);
+
+router.get("/editAddress/:editId", User.editAddress);
+
+router.post("/editAddress/:editId", User.editAddressPost);
+
 
 
 module.exports = router;
